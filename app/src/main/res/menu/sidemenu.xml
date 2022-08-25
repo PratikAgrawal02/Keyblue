@@ -16,6 +16,9 @@
                 <item android:title="Contact Us"
                     android:icon="@drawable/about_us_vector"
                     android:id="@+id/Contactus_menu"/>
+                <item android:title="Website"
+                    android:icon="@drawable/ic_baseline_web_24"
+                    android:id="@+id/website"/>
             </menu>
 
 
