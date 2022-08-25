@@ -47,7 +47,7 @@ public class Register_Page extends AppCompatActivity {
     EditText fullName,password,confirmationPassword,EmailID,phoneNumber,userDateofBirth;
     Button registerButton;
     TextView loginHere;
-    SharedPreferences preferences = getSharedPreferences("user",MODE_PRIVATE);
+    SharedPreferences preferences;
 
     String[] genders = {"Male","Female","Others"};
     String[] bloodGroups = {"O+","O-","A+","A-","B+","B-","AB+","AB-"};
@@ -73,8 +73,9 @@ public class Register_Page extends AppCompatActivity {
         AutoCompleteTextView autoCompleteTextView;
         AutoCompleteTextView autoCompleteTextView_02;
         //adddatatoapi();
+        myAuth = FirebaseAuth.getInstance();
 
-
+//        preferences = getSharedPreferences("user",MODE_PRIVATE);
         fullName = findViewById(R.id.userName);
         password = findViewById(R.id.password);
         confirmationPassword = findViewById(R.id.confirmPassword);
@@ -169,12 +170,6 @@ public class Register_Page extends AppCompatActivity {
                                 Toast.makeText(Register_Page.this, "User With this ID Already Registered!!", Toast.LENGTH_SHORT).show();
                             }
                             else{
-                                preferences.edit().putString("number",number).apply();
-                                databaseReference.child("users").child(number).child("Full Name").setValue(userName);
-                                databaseReference.child("users").child(number).child("Email ID").setValue(email);
-                                databaseReference.child("users").child(number).child("Date of Birth").setValue(dater);
-                                databaseReference.child("users").child(number).child("Gender").setValue(Gen);
-                                databaseReference.child("users").child(number).child("BloodGroup").setValue(BloodGrp);
                                 myAuth.createUserWithEmailAndPassword(email,pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                                     @Override
                                     public void onComplete(@NonNull Task<AuthResult> task) {
@@ -183,8 +178,14 @@ public class Register_Page extends AppCompatActivity {
                                         }
                                     }
                                 });
+//                                preferences.edit().putString("number",number).apply();
+                                databaseReference.child("users").child(number).child("Full Name").setValue(userName);
+                                databaseReference.child("users").child(number).child("Email ID").setValue(email);
+                                databaseReference.child("users").child(number).child("Date of Birth").setValue(dater);
+                                databaseReference.child("users").child(number).child("Gender").setValue(Gen);
+                                databaseReference.child("users").child(number).child("BloodGroup").setValue(BloodGrp);
                                 Toast.makeText(Register_Page.this, "Registration Successful!!", Toast.LENGTH_SHORT).show();
-                                adddatatoapi(number,userName,email,pass);
+//                                adddatatoapi(number,userName,email,pass);
                                 finish();
                             }
                         }
