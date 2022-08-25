@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
 import android.app.DatePickerDialog;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
@@ -34,7 +35,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.ktx.Firebase;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -47,6 +47,7 @@ public class Register_Page extends AppCompatActivity {
     EditText fullName,password,confirmationPassword,EmailID,phoneNumber,userDateofBirth;
     Button registerButton;
     TextView loginHere;
+    SharedPreferences preferences = getSharedPreferences("user",MODE_PRIVATE);
 
     String[] genders = {"Male","Female","Others"};
     String[] bloodGroups = {"O+","O-","A+","A-","B+","B-","AB+","AB-"};
@@ -72,6 +73,7 @@ public class Register_Page extends AppCompatActivity {
         AutoCompleteTextView autoCompleteTextView;
         AutoCompleteTextView autoCompleteTextView_02;
         //adddatatoapi();
+
 
         fullName = findViewById(R.id.userName);
         password = findViewById(R.id.password);
@@ -167,6 +169,7 @@ public class Register_Page extends AppCompatActivity {
                                 Toast.makeText(Register_Page.this, "User With this ID Already Registered!!", Toast.LENGTH_SHORT).show();
                             }
                             else{
+                                preferences.edit().putString("number",number).apply();
                                 databaseReference.child("users").child(number).child("Full Name").setValue(userName);
                                 databaseReference.child("users").child(number).child("Email ID").setValue(email);
                                 databaseReference.child("users").child(number).child("Date of Birth").setValue(dater);

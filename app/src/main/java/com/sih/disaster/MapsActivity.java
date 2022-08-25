@@ -9,6 +9,7 @@ import android.Manifest;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -78,11 +79,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     TextView safetext;
     ImageView red_blink;
     String namelocation,URL="https://technophilesapi.up.railway.app/ngo/findAll";
-    DatabaseReference databaseReference;
+    DatabaseReference databaseReference,unsafe=FirebaseDatabase.getInstance().getReference("unsafe");
     RadiusAnimation groundAnimation;
     Disasteranimation disasteranim;
     LatLng latLng,currlocation,dirn;
 
+    SharedPreferences preferences = getSharedPreferences("user",MODE_PRIVATE);
 
 
      int camerapos=0;
@@ -274,6 +276,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 safetext.setText("You Are safe\nEpicenter: "+String.valueOf((int)distinmile)+" km away");
             }
             else {//Unsafe condition
+//                unsafe.child().setValue()
                 safetext.setTextColor(getResources().getColor(R.color.red));
                 safetext.setText("You Are not safe\nEpicenter: "+String.valueOf((int)distinmile)+" km away");
             }

@@ -220,7 +220,7 @@ public class Home extends AppCompatActivity {
 //    }
 
     public void openillus(View view){
-        Toast.makeText(this, "coming soon..", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, "coming soon..", Toast.LENGTH_SHORT).show();
         CardView cclicked = (CardView) view;
         String tag = cclicked.getTag().toString();
         Intent intent=new Intent(Home.this, MainActivity.class);
