@@ -13,6 +13,7 @@ import android.app.AlertDialog;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
@@ -46,11 +47,12 @@ public class Home extends AppCompatActivity {
     Boolean disastermode=false;
     FirebaseDatabase root;
 
-    DatabaseReference reference,data;
+    DatabaseReference reference,unsafe=FirebaseDatabase.getInstance().getReference("unsafe");;
     DrawerLayout drawerLayout;
     TextView ngo, deaths, disaster,ranger,user;
     Button dismode;
     TextView news;
+    SharedPreferences preferences;
     NavigationView navigationView;
     Button nationalEmergency, disasterManagement,ambulace,police,fire;
 
@@ -61,7 +63,7 @@ public class Home extends AppCompatActivity {
         setContentView(R.layout.activity_home);
         root=FirebaseDatabase.getInstance();
         hook();
-
+        preferences = getSharedPreferences("user",MODE_PRIVATE);
         //Button Onclick Listeners to Contact Them
         nationalEmergency.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -314,6 +316,7 @@ public class Home extends AppCompatActivity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
+                
                 loading_dialog.cancel();
             }
         },5000);

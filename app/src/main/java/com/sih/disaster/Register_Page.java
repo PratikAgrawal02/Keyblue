@@ -58,6 +58,7 @@ public class Register_Page extends AppCompatActivity {
 
     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
 
+    SharedPreferences sharedPreferences;
     String Gen = "",URL="https://technophilesapi.herokuapp.com/user/create";
     String BloodGrp = "";
     String dater = "";
@@ -70,12 +71,12 @@ public class Register_Page extends AppCompatActivity {
         setContentView(R.layout.activity_register_page);
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
 
+        sharedPreferences= getSharedPreferences("user",MODE_PRIVATE);
         AutoCompleteTextView autoCompleteTextView;
         AutoCompleteTextView autoCompleteTextView_02;
         //adddatatoapi();
         myAuth = FirebaseAuth.getInstance();
 
-//        preferences = getSharedPreferences("user",MODE_PRIVATE);
         fullName = findViewById(R.id.userName);
         password = findViewById(R.id.password);
         confirmationPassword = findViewById(R.id.confirmPassword);
@@ -178,7 +179,7 @@ public class Register_Page extends AppCompatActivity {
                                         }
                                     }
                                 });
-//                                preferences.edit().putString("number",number).apply();
+                                preferences.edit().putString("number",number).apply();
                                 databaseReference.child("users").child(number).child("Full Name").setValue(userName);
                                 databaseReference.child("users").child(number).child("Email ID").setValue(email);
                                 databaseReference.child("users").child(number).child("Date of Birth").setValue(dater);

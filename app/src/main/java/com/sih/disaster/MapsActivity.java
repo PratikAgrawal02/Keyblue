@@ -84,7 +84,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     Disasteranimation disasteranim;
     LatLng latLng,currlocation,dirn;
 
-    SharedPreferences preferences = getSharedPreferences("user",MODE_PRIVATE);
+    SharedPreferences preferences;
 
 
      int camerapos=0;
@@ -94,7 +94,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         binding = ActivityMapsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
+        preferences = getSharedPreferences("user",MODE_PRIVATE);
         red_blink= (ImageView) findViewById(R.id.red_blinkd);
         Animation animation1 = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.blink);
         red_blink.startAnimation(animation1);
@@ -276,7 +276,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 safetext.setText("You Are safe\nEpicenter: "+String.valueOf((int)distinmile)+" km away");
             }
             else {//Unsafe condition
-//                unsafe.child().setValue()
+                unsafe.child(preferences.getString("number","default")).child("lat").setValue(livelocation.getLatitude());
+                unsafe.child(preferences.getString("number","default")).child("long").setValue(livelocation.getLongitude());
+                unsafe.child(preferences.getString("number","default")).child("verified").setValue("yes");
                 safetext.setTextColor(getResources().getColor(R.color.red));
                 safetext.setText("You Are not safe\nEpicenter: "+String.valueOf((int)distinmile)+" km away");
             }
