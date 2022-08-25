@@ -41,10 +41,11 @@
         android:gravity="center">
 
         <ImageView
+            android:id="@+id/instaim"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:clickable="true"
-            android:src="@drawable/insta"/>
+            android:src="@drawable/insta" />
 
         <Space
             android:layout_width="20dp"

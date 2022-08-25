@@ -3,11 +3,22 @@ package com.sih.disaster;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
+import android.app.AlertDialog;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -22,6 +33,7 @@ import java.util.ArrayList;
 public class Ngo_list extends AppCompatActivity {
     ArrayList<String> namer = new ArrayList<String>();
     ArrayAdapter<String> adapter;
+    AlertDialog dialog;
 
     public class DownloadTask extends AsyncTask<String,Void,String>{
 
@@ -54,6 +66,7 @@ public class Ngo_list extends AppCompatActivity {
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
+            dialog.cancel();
 
             try {
                 JSONObject jsonObject = new JSONObject(s);
@@ -97,6 +110,7 @@ public class Ngo_list extends AppCompatActivity {
         setContentView(R.layout.activity_ngo_list);
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
 
+        setProgressDialog();
         ListView listNGO = findViewById(R.id.ngoList);
         adapter = new ArrayAdapter<String>(this, R.layout.list_item_view,namer);
 
@@ -105,4 +119,61 @@ public class Ngo_list extends AppCompatActivity {
 
         listNGO.setAdapter(adapter);
     }
+    public void back(View view){
+        finish();
+    }
+    public void setProgressDialog() {
+
+
+        LinearLayout ll = new LinearLayout(this);
+        ll.setOrientation(LinearLayout.HORIZONTAL);
+        ll.setPadding(0, 20, 20, 20);
+        ll.setGravity(Gravity.CENTER);
+        LinearLayout.LayoutParams llParam = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.WRAP_CONTENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT);
+        llParam.gravity = Gravity.CENTER;
+        ll.setLayoutParams(llParam);
+
+        ProgressBar progressBar = new ProgressBar(this);
+        progressBar.setIndeterminate(true);
+        progressBar.setPadding(0, 0, 60, 0);
+        progressBar.setLayoutParams(llParam);
+
+        llParam = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT);
+        llParam.gravity = Gravity.CENTER;
+        TextView tvText = new TextView(this);
+        tvText.setText("Loading ...");
+        tvText.setTextColor(Color.parseColor("#000000"));
+        tvText.setTextSize(18);
+        tvText.setLayoutParams(llParam);
+
+        ll.addView(progressBar);
+        ll.addView(tvText);
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setCancelable(true);
+        builder.setView(ll);
+
+        dialog = builder.create();
+        dialog.show();
+        dialog.setCancelable(false);
+        Window window = dialog.getWindow();
+        Handler hdl= new Handler();
+//        hdl.postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//                dialog.cancel();
+//            }
+//        },4500);
+        if (window != null) {
+            WindowManager.LayoutParams layoutParams = new WindowManager.LayoutParams();
+            layoutParams.copyFrom(dialog.getWindow().getAttributes());
+            layoutParams.width = LinearLayout.LayoutParams.WRAP_CONTENT;
+            layoutParams.height = LinearLayout.LayoutParams.WRAP_CONTENT;
+            dialog.getWindow().setAttributes(layoutParams);
+        }
+    }
+
 }

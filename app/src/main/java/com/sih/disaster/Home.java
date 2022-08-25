@@ -15,6 +15,7 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
@@ -34,7 +35,7 @@ import com.onesignal.OneSignal;
 
 import java.util.Objects;
 
-//side menu, illus, dismode
+
 public class Home extends AppCompatActivity {
 
     ImageView red_blink;
@@ -111,69 +112,83 @@ public class Home extends AppCompatActivity {
 
 
 
-//                switch (id){
-//                    case R.id.faq_menu:{
-//                        Intent intent=new Intent(Home.this,
-//                                Faq.class);
-//                        startActivity(intent);
-//
-//                        break;
-//                    }
-//                    case R.id.Home_menu: {
-//
-//                        break;
-//                    }
-//                    case R.id.ngo_list:{
-//                        Intent intent=new Intent(Home.this,
-//                                Ngo_list.class);
-//                        startActivity(intent);
-//                        break;
-//                    }
-//                    case R.id.Contactus_menu: {
-//                        Intent intent=new Intent(Home.this,
-//                                Contact_Us.class);
-//                        startActivity(intent);
-//
-//                        //Toast.makeText(Home.this, "hey/.....", Toast.LENGTH_SHORT).show();
-//
-//                        break;
-//                    }
-//                    case R.id.developer_menu: {
-//                        Intent intent=new Intent(Home.this,
-//                                About_Us.class);
-//                        startActivity(intent);
-//
-//
-//
-//                        break;
-//                    }
-//                    case R.id.privacy_policy_menu: {
-//
-//                        break;
-//                    }
-//                    case R.id.TnC_menu: {
-//
-//                        break;
-//                    }
-//                    case R.id.share_app_menu: {
-//
-//                        break;
-//                    }
-//                    case R.id.rate: {
-//
-//
-//                        break;
-//                    }
-//                    default: return true;
-//
-//                }
+                switch (id){
+                    case R.id.faq_menu:{
+                        Toast.makeText(Home.this, "coming soon..", Toast.LENGTH_SHORT).show();
+                        Intent intent=new Intent(Home.this,
+                                Faq.class);
+                        startActivity(intent);
+
+                        break;
+                    }
+                    case R.id.Home_menu: {
+
+                        break;
+                    }
+                    case R.id.ngo_list:{
+                        Intent intent=new Intent(Home.this,
+                                Ngo_list.class);
+                        startActivity(intent);
+                        break;
+                    }
+                    case R.id.Contactus_menu: {
+                        Toast.makeText(Home.this, "coming soon..", Toast.LENGTH_SHORT).show();
+                        Intent intent=new Intent(Home.this,
+                                Contact_Us.class);
+                        startActivity(intent);
+
+                        Toast.makeText(Home.this, "hey/.....", Toast.LENGTH_SHORT).show();
+
+                        break;
+                    }
+                    case R.id.developer_menu: {
+                        Toast.makeText(Home.this, "coming soon..", Toast.LENGTH_SHORT).show();
+                        Intent intent=new Intent(Home.this,
+                                About_Us.class);
+                        startActivity(intent);
+
+
+
+                        break;
+                    }
+                    case R.id.privacy_policy_menu: {
+
+                        break;
+                    }
+                    case R.id.TnC_menu: {
+
+                        break;
+                    }
+                    case R.id.share_app_menu: {
+
+                        break;
+                    }
+                    case R.id.rate: {
+
+
+                        break;
+                    }
+                    default: return true;
+
+                }
 
                 return true;
             }
         });
 
 
+       // final LayoutInflater factory = getLayoutInflater();
+        final View header = getLayoutInflater().inflate(R.layout.headerfile,null);
+        ImageView insta =  (ImageView) header.findViewById(R.id.instaim);
+        insta.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(Home.this, "insta", Toast.LENGTH_SHORT).show();
+            }
+        });
+
     }
+
 
     public void livedataget() {
         user = (TextView) findViewById(R.id.user_total);
@@ -219,29 +234,29 @@ public class Home extends AppCompatActivity {
 
     public void openillus(View view){
         Toast.makeText(this, "coming soon..", Toast.LENGTH_SHORT).show();
-//        CardView cclicked = (CardView) view;
-//        String tag = cclicked.getTag().toString();
-//        Intent intent=new Intent(Home.this, MainActivity.class);
-//        if(tag.equals("earthquake")){
-//            intent.putExtra("mode",1);
-//            startActivity(intent);
-//
-//        }
-//        if(tag.equals("flood")){
-//            intent.putExtra("mode",3);
-//            startActivity(intent);
-//
-//        }
-//        if(tag.equals("landslide")){
-//            intent.putExtra("mode",2);
-//            startActivity(intent);
-//
-//        }
-//        if(tag.equals("thunderstorm")){
-//            intent.putExtra("mode",4);
-//            startActivity(intent);
-//
-//        }
+        CardView cclicked = (CardView) view;
+        String tag = cclicked.getTag().toString();
+        Intent intent=new Intent(Home.this, MainActivity.class);
+        if(tag.equals("earthquake")){
+            intent.putExtra("mode",1);
+            startActivity(intent);
+
+        }
+        if(tag.equals("flood")){
+            intent.putExtra("mode",3);
+            startActivity(intent);
+
+        }
+        if(tag.equals("landslide")){
+            intent.putExtra("mode",2);
+            startActivity(intent);
+
+        }
+        if(tag.equals("thunderstorm")){
+            intent.putExtra("mode",4);
+            startActivity(intent);
+
+        }
 
     }
 
