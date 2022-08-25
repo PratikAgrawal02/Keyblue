@@ -10,11 +10,15 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.app.AlertDialog;
+import android.app.NotificationManager;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.provider.Settings;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -55,8 +59,6 @@ public class Home extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         root=FirebaseDatabase.getInstance();
-
-
 
         reference=root.getReference("disaster");
         livedataget();
@@ -114,7 +116,6 @@ public class Home extends AppCompatActivity {
 
                 switch (id){
                     case R.id.faq_menu:{
-                        Toast.makeText(Home.this, "coming soon..", Toast.LENGTH_SHORT).show();
                         Intent intent=new Intent(Home.this,
                                 Faq.class);
                         startActivity(intent);
@@ -132,17 +133,12 @@ public class Home extends AppCompatActivity {
                         break;
                     }
                     case R.id.Contactus_menu: {
-                        Toast.makeText(Home.this, "coming soon..", Toast.LENGTH_SHORT).show();
                         Intent intent=new Intent(Home.this,
                                 Contact_Us.class);
                         startActivity(intent);
-
-                        Toast.makeText(Home.this, "hey/.....", Toast.LENGTH_SHORT).show();
-
                         break;
                     }
                     case R.id.developer_menu: {
-                        Toast.makeText(Home.this, "coming soon..", Toast.LENGTH_SHORT).show();
                         Intent intent=new Intent(Home.this,
                                 About_Us.class);
                         startActivity(intent);
