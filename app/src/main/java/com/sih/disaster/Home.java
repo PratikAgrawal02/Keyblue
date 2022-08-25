@@ -316,7 +316,7 @@ public class Home extends AppCompatActivity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                
+
                 loading_dialog.cancel();
             }
         },5000);
