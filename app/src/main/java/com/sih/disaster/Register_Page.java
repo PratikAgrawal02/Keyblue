@@ -50,8 +50,6 @@ public class Register_Page extends AppCompatActivity {
     String[] genders = {"Male","Female","Others"};
     String[] bloodGroups = {"O+","O-","A+","A-","B+","B-","AB+","AB-"};
 
-    AutoCompleteTextView autoCompleteTextView;
-    AutoCompleteTextView autoCompleteTextView_02;
 
     ArrayAdapter<String> arrayAdapter;
     ArrayAdapter<String> arrayAdapter_02;
@@ -68,6 +66,8 @@ public class Register_Page extends AppCompatActivity {
         setContentView(R.layout.activity_register_page);
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
 
+        AutoCompleteTextView autoCompleteTextView;
+        AutoCompleteTextView autoCompleteTextView_02;
         //adddatatoapi();
 
         userID = findViewById(R.id.userID);
