@@ -6,6 +6,8 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentActivity;
 
 import android.Manifest;
+import android.app.NotificationManager;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -13,9 +15,12 @@ import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.ColorSpace;
 import android.location.Location;
+import android.media.AudioManager;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
@@ -264,11 +269,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
           //  Toast.makeText(this, ""+groundOverlayOptions.toString(), Toast.LENGTH_SHORT).show();
             mMap.addMarker(new MarkerOptions().position(latLng).title(""+namelocation));
             double distinmile = distance(lati,longi,livelocation.getLatitude(),livelocation.getLongitude())*1.609;
-            if(distinmile>=3.8616){
+            if(distinmile>=3.8616){//Safe condition
                 safetext.setTextColor(getResources().getColor(R.color.green));
                 safetext.setText("You Are safe\nEpicenter: "+String.valueOf((int)distinmile)+" km away");
             }
-            else {
+            else {//Unsafe condition
                 safetext.setTextColor(getResources().getColor(R.color.red));
                 safetext.setText("You Are not safe\nEpicenter: "+String.valueOf((int)distinmile)+" km away");
             }

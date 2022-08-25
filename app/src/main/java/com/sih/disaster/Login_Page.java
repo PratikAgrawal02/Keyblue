@@ -13,6 +13,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -20,12 +24,14 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class Login_Page extends AppCompatActivity {
-    EditText userID,password;
+    EditText emailID,password;
     Button loginButton;
     TextView registerHere;
 
     SharedPreferences preferences;
     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+
+    FirebaseAuth myAuth;
 
 
     @Override
@@ -35,45 +41,35 @@ public class Login_Page extends AppCompatActivity {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
 
         preferences = getSharedPreferences("user",MODE_PRIVATE);
-        userID = findViewById(R.id.userID);
+        emailID = findViewById(R.id.userID);
         password = findViewById(R.id.password);
         loginButton = findViewById(R.id.loginButton);
         registerHere = findViewById(R.id.register);
 
+        myAuth = FirebaseAuth.getInstance();
+
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String ID = userID.getText().toString();
+                String ID = emailID.getText().toString();
                 String pass = password.getText().toString();
                 
                 if (ID.isEmpty() || pass.isEmpty()){
                     Toast.makeText(Login_Page.this, "Please Enter The UserID or Password", Toast.LENGTH_SHORT).show();
                 }
                 else{
-                    databaseReference.child("users").addListenerForSingleValueEvent(new ValueEventListener() {
+                    myAuth.signInWithEmailAndPassword(ID,pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
-                        public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            if (snapshot.hasChild(ID)){
-                                String passwordChecker = snapshot.child(ID).child("Password").getValue(String.class);
-
-                                if (passwordChecker.equals(pass)){
-                                    Toast.makeText(Login_Page.this, "Logged in!!", Toast.LENGTH_SHORT).show();
-                                    preferences.edit().putString("id",""+ID).apply();
-                                    startActivity(new Intent(Login_Page.this,Home.class));
-                                    finish();
-                                }
-                                else{
-                                    Toast.makeText(Login_Page.this, "Incorrect Password!!", Toast.LENGTH_SHORT).show();
-                                }
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()){
+                                Toast.makeText(Login_Page.this, "Logged in!!", Toast.LENGTH_SHORT).show();
+                                preferences.edit().putString("id",""+ID).apply();
+                                startActivity(new Intent(Login_Page.this,Home.class));
+                                finish();
                             }
                             else{
-                                Toast.makeText(Login_Page.this, "User not Registered!!", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(Login_Page.this, "Login Error!!", Toast.LENGTH_SHORT).show();
                             }
-                        }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError error) {
-
                         }
                     });
                 }

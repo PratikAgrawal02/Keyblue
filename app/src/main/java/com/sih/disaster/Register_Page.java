@@ -34,6 +34,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.ktx.Firebase;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -43,7 +44,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Register_Page extends AppCompatActivity {
-    EditText userID,fullName,password,confirmationPassword,EmailID,phoneNumber,userDateofBirth;
+    EditText fullName,password,confirmationPassword,EmailID,phoneNumber,userDateofBirth;
     Button registerButton;
     TextView loginHere;
 
@@ -59,6 +60,8 @@ public class Register_Page extends AppCompatActivity {
     String Gen = "",URL="https://technophilesapi.herokuapp.com/user/create";
     String BloodGrp = "";
     String dater = "";
+
+    FirebaseAuth myAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -127,14 +130,13 @@ public class Register_Page extends AppCompatActivity {
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String ID = userID.getText().toString();
                 String userName = fullName.getText().toString();
                 String pass = password.getText().toString();
                 String confPass = confirmationPassword.getText().toString();
                 String email = EmailID.getText().toString();
                 String number = phoneNumber.getText().toString();
 
-                if (ID.isEmpty() || userName.isEmpty() || pass.isEmpty() || confPass.isEmpty() || email.isEmpty() || number.isEmpty() || dater.isEmpty() || Gen.isEmpty() || BloodGrp.isEmpty()){
+                if (userName.isEmpty() || pass.isEmpty() || confPass.isEmpty() || email.isEmpty() || number.isEmpty() || dater.isEmpty() || Gen.isEmpty() || BloodGrp.isEmpty()){
                     Toast.makeText(Register_Page.this, "Please Enter Every Detail", Toast.LENGTH_SHORT).show();
                 }
                 else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
@@ -163,17 +165,23 @@ public class Register_Page extends AppCompatActivity {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                            if (snapshot.hasChild(ID)){
+                            if (snapshot.hasChild(number)){
                                 Toast.makeText(Register_Page.this, "User With this ID Already Registered!!", Toast.LENGTH_SHORT).show();
                             }
                             else{
-                                databaseReference.child("users").child(ID).child("Full Name").setValue(userName);
-                                databaseReference.child("users").child(ID).child("Email ID").setValue(email);
-                                databaseReference.child("users").child(ID).child("Phone Number").setValue(number);
-                                databaseReference.child("users").child(ID).child("Date of Birth").setValue(dater);
-                                databaseReference.child("users").child(ID).child("Password").setValue(pass);
-                                databaseReference.child("users").child(ID).child("Gender").setValue(Gen);
-                                databaseReference.child("users").child(ID).child("BloodGroup").setValue(BloodGrp);
+                                databaseReference.child("users").child(number).child("Full Name").setValue(userName);
+                                databaseReference.child("users").child(number).child("Email ID").setValue(email);
+                                databaseReference.child("users").child(number).child("Date of Birth").setValue(dater);
+                                databaseReference.child("users").child(number).child("Gender").setValue(Gen);
+                                databaseReference.child("users").child(number).child("BloodGroup").setValue(BloodGrp);
+                                myAuth.createUserWithEmailAndPassword(email,pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<AuthResult> task) {
+                                        if (task.isSuccessful()){
+                                            Toast.makeText(Register_Page.this, "Registered Successfully", Toast.LENGTH_SHORT).show();
+                                        }
+                                    }
+                                });
                                 Toast.makeText(Register_Page.this, "Registration Successful!!", Toast.LENGTH_SHORT).show();
                                 adddatatoapi(number,userName,email,pass);
                                 finish();
@@ -196,7 +204,6 @@ public class Register_Page extends AppCompatActivity {
             }
         });
     }
-
 
     public void adddatatoapi(String number, String userName, String email, String password) {
         try {
