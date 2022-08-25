@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">KeyBlue</string>
+    <string name="motive">test motive</string>
+    <string name="navigation_open">Open Drawer</string>
+    <string name="navigation_close">Close drawer</string>
+    <string name="title_activity_maps">MapsActivity</string>
+    <string name="map_api" translatable="false" >AIzaSyD8s8mbivdAl5dzDqNjUm58MEXx2eTFeas</string>
+</resources>
