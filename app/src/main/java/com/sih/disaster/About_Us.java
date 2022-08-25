@@ -12,6 +12,10 @@ import android.widget.ImageView;
 public class About_Us extends AppCompatActivity {
 
 
+    public void back(View view){
+        finish();
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);

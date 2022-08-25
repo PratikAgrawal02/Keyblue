@@ -18,20 +18,21 @@ public class SlideAdapter extends PagerAdapter {
     Context context;
     LayoutInflater layoutInflater;
 
-    public String slidetop = "Smart India Hackathon";
+    public String slidetop = "KeyBlue";
     public SlideAdapter (Context context){
         this.context=context;
     }
     public int[] slide_top= {R.drawable.bg_top_first,R.drawable.bg_top_secound,R.drawable.bg_top_third};
     public int[] slide_images = {
-            R.drawable.icon,
-            R.drawable.icon,
-            R.drawable.icon
+            R.drawable.slider01,
+            R.drawable.slider02,
+            R.drawable.slider03
     };
+
     public String[] slide_headings = {
-            "Heading 1",
-            "Heading 2",
-            "Heading 3"
+            "An assistant to guide you through Disasters.",
+            "Knowing how safe your current location is.",
+            "What to do when Disaster Strikes."
     };
 
     @Override
