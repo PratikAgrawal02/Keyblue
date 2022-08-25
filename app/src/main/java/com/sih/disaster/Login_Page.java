@@ -62,6 +62,12 @@ public class Login_Page extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()){
+                                databaseReference.child("users").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<DataSnapshot> task) {
+                                        
+                                    }
+                                });
                                 Toast.makeText(Login_Page.this, "Logged in!!", Toast.LENGTH_SHORT).show();
                                 preferences.edit().putString("id",""+ID).apply();
                                 startActivity(new Intent(Login_Page.this,Home.class));
