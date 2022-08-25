@@ -20,6 +20,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Disaster"
         tools:targetApi="31">
+<<<<<<< HEAD
+=======
+        <activity
+            android:name=".contact_emergency"
+            android:exported="false" />
+>>>>>>> 87d295c21037b580b45fc66c2c234a3185f6cc31
         <!--
              TODO: Before you run your application, you need a Google Maps API key.
 

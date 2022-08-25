@@ -6,6 +6,7 @@
         <entry key="..\:/AndroidStudioProjects/Disaster/app/src/main/res/drawable/about_us_vector.xml" value="0.1255" />
         <entry key="..\:/AndroidStudioProjects/Disaster/app/src/main/res/drawable/blue_circle.xml" value="0.1425" />
         <entry key="..\:/AndroidStudioProjects/Disaster/app/src/main/res/drawable/buttonlayout.xml" value="0.137" />
+        <entry key="..\:/AndroidStudioProjects/Disaster/app/src/main/res/drawable/card_edge.xml" value="0.1395" />
         <entry key="..\:/AndroidStudioProjects/Disaster/app/src/main/res/drawable/circleblue.xml" value="0.1" />
         <entry key="..\:/AndroidStudioProjects/Disaster/app/src/main/res/drawable/developer_vector.xml" value="0.1255" />
         <entry key="..\:/AndroidStudioProjects/Disaster/app/src/main/res/drawable/edittextlayout.xml" value="0.137" />
@@ -13,19 +14,21 @@
         <entry key="..\:/AndroidStudioProjects/Disaster/app/src/main/res/drawable/home_vector.xml" value="0.1255" />
         <entry key="..\:/AndroidStudioProjects/Disaster/app/src/main/res/drawable/ic_baseline_apartment_24.xml" value="0.1395" />
         <entry key="..\:/AndroidStudioProjects/Disaster/app/src/main/res/drawable/ic_baseline_menu_24.xml" value="0.1395" />
+        <entry key="..\:/AndroidStudioProjects/Disaster/app/src/main/res/drawable/ic_baseline_web_24.xml" value="0.1395" />
         <entry key="..\:/AndroidStudioProjects/Disaster/app/src/main/res/drawable/privacy_policy.xml" value="0.1255" />
         <entry key="..\:/AndroidStudioProjects/Disaster/app/src/main/res/drawable/rateapp.xml" value="0.1255" />
         <entry key="..\:/AndroidStudioProjects/Disaster/app/src/main/res/drawable/share_vector.xml" value="0.1255" />
         <entry key="..\:/AndroidStudioProjects/Disaster/app/src/main/res/drawable/strokers.xml" value="0.1" />
         <entry key="..\:/AndroidStudioProjects/Disaster/app/src/main/res/layout/activity_about_us.xml" value="0.1" />
+        <entry key="..\:/AndroidStudioProjects/Disaster/app/src/main/res/layout/activity_contact_emergency.xml" value="0.19067028985507245" />
         <entry key="..\:/AndroidStudioProjects/Disaster/app/src/main/res/layout/activity_contact_us.xml" value="0.22" />
         <entry key="..\:/AndroidStudioProjects/Disaster/app/src/main/res/layout/activity_faq.xml" value="0.1" />
-        <entry key="..\:/AndroidStudioProjects/Disaster/app/src/main/res/layout/activity_home.xml" value="0.4466666666666667" />
+        <entry key="..\:/AndroidStudioProjects/Disaster/app/src/main/res/layout/activity_home.xml" value="0.22" />
         <entry key="..\:/AndroidStudioProjects/Disaster/app/src/main/res/layout/activity_login_page.xml" value="0.16666666666666666" />
         <entry key="..\:/AndroidStudioProjects/Disaster/app/src/main/res/layout/activity_main.xml" value="0.22" />
         <entry key="..\:/AndroidStudioProjects/Disaster/app/src/main/res/layout/activity_maps.xml" value="0.15443840579710144" />
         <entry key="..\:/AndroidStudioProjects/Disaster/app/src/main/res/layout/activity_ngo_list.xml" value="0.1393110435663627" />
-        <entry key="..\:/AndroidStudioProjects/Disaster/app/src/main/res/layout/activity_register_page.xml" value="0.1" />
+        <entry key="..\:/AndroidStudioProjects/Disaster/app/src/main/res/layout/activity_register_page.xml" value="0.22" />
         <entry key="..\:/AndroidStudioProjects/Disaster/app/src/main/res/layout/activity_splash_screen.xml" value="0.2864583333333333" />
         <entry key="..\:/AndroidStudioProjects/Disaster/app/src/main/res/layout/headerfile.xml" value="0.2341880341880342" />
         <entry key="..\:/AndroidStudioProjects/Disaster/app/src/main/res/layout/list_item.xml" value="0.1" />
@@ -33,6 +36,7 @@
         <entry key="..\:/AndroidStudioProjects/Disaster/app/src/main/res/layout/row.xml" value="0.1" />
         <entry key="..\:/AndroidStudioProjects/Disaster/app/src/main/res/layout/slider_layout.xml" value="0.22" />
         <entry key="..\:/AndroidStudioProjects/Disaster/app/src/main/res/menu/sidemenu.xml" value="0.3333333333333333" />
+<<<<<<< HEAD
         <entry key="..\:/Darshan/Coding/Android development/Projects/App_Repo/app/src/main/res/drawable/ic_baseline_web_24.xml" value="0.181" />
         <entry key="..\:/Darshan/Coding/Android development/Projects/App_Repo/app/src/main/res/drawable/sos_button.xml" value="0.181" />
         <entry key="..\:/Darshan/Coding/Android development/Projects/App_Repo/app/src/main/res/drawable/sos_strokers.xml" value="0.181" />
@@ -47,6 +51,8 @@
         <entry key="..\:/Darshan/Coding/Android development/Projects/App_Repo/app/src/main/res/layout/activity_register_page.xml" value="0.264" />
         <entry key="..\:/Darshan/Coding/Android development/Projects/App_Repo/app/src/main/res/layout/headerfile.xml" value="0.23229166666666667" />
         <entry key="..\:/Darshan/Coding/Android development/Projects/App_Repo/app/src/main/res/layout/slider_layout.xml" value="0.23229166666666667" />
+=======
+>>>>>>> 87d295c21037b580b45fc66c2c234a3185f6cc31
       </map>
     </option>
   </component>
