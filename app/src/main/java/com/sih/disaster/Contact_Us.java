@@ -30,9 +30,7 @@ public class Contact_Us extends AppCompatActivity {
     int totalq=0;
     User_entry userEntry;
     public void back(View view){
-        Intent new_intent=new Intent(Contact_Us.this,
-                Home.class);
-        startActivity(new_intent);
+        finish();
     }
     @Override
     protected void onCreate(Bundle savedInstanceState) {

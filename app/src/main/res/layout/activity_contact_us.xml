@@ -28,24 +28,25 @@
                 android:background="#FFFFFF"
                 android:contentDescription="@android:string/ok"
                 android:onClick="back"
+                android:src="@drawable/ic_baseline_arrow_back_24"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_baseline_arrow_back_24" />
+                app:layout_constraintTop_toTopOf="parent">
+
+            </ImageButton>
+
             <ImageView
                 android:id="@+id/support"
                 android:layout_width="271dp"
                 android:layout_height="161dp"
-
+                android:src="@drawable/contact"
                 app:layout_constraintBottom_toTopOf="@+id/heading"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/contact"
-                app:srcCompat="@drawable/contact" />
+                app:layout_constraintTop_toBottomOf="@+id/contact">
+
+            </ImageView>
 
         </LinearLayout>
-
-
-
 
 
         <TextView
@@ -53,12 +54,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
+            android:fontFamily="@font/andika"
             android:inputType="textPersonName"
             android:text="Contact Us"
             android:textAlignment="center"
             android:textColor="#3A50C2"
-            android:fontFamily="@font/andika"
-            android:textSize="34sp"
+            android:textSize="28sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/info"
             app:layout_constraintEnd_toEndOf="parent"
@@ -95,41 +96,40 @@
                 android:id="@+id/subheading1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
                 android:text="Enter Your Full Name"
-                android:textColor="#757575"
-                android:textSize="20sp"
+                android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@+id/Name"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/info" />
+
             <EditText
                 android:id="@+id/Name"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginRight="30dp"
-                android:background="@drawable/edittextlayout"
+                android:layout_height="48dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp"
+                android:paddingStart="20dp"
                 android:ems="10"
-                android:hint="Name"
+                android:hint="Enter Full Name"
+                android:background="@drawable/strokers"
                 android:inputType="text"
-                android:paddingStart="5dp"
-                android:textColor="#757575"
-                android:textSize="25sp"
-                android:textStyle="normal"
                 app:layout_constraintBottom_toTopOf="@+id/subheading2"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/subheading1" />
+
             <TextView
                 android:id="@+id/subheading2"
-                android:layout_width="350dp"
-                android:layout_height="30dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginRight="30dp"
+                android:layout_marginTop="20dp"
                 android:text="Enter Your Email"
                 android:textColor="#757575"
-                android:textSize="20sp"
+                android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@+id/Email"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -139,47 +139,45 @@
             <EditText
                 android:id="@+id/Email"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginRight="30dp"
-                android:background="@drawable/edittextlayout"
+                android:layout_height="48dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp"
                 android:ems="10"
-                android:paddingLeft="4dp"
-                android:hint="Email"
+                android:hint="Enter Email ID"
+                android:paddingStart="20dp"
                 android:inputType="textEmailAddress"
-
-                android:textColor="#757575"
-                android:textSize="25sp"
-                android:textStyle="normal"
+                android:background="@drawable/strokers"
                 app:layout_constraintBottom_toTopOf="@+id/subheading3"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/subheading2" />
+
             <TextView
                 android:id="@+id/subheading3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
+                android:layout_marginTop="20dp"
                 android:text="Enter Your Query"
-                android:textColor="#757575"
-                android:textSize="20sp"
+                android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@+id/Query"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/Email" />
+
             <EditText
                 android:id="@+id/Query"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
-                android:layout_marginRight="30dp"
-                android:background="@drawable/edittextlayout"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp"
+                android:paddingStart="20dp"
+                android:paddingTop="10dp"
                 android:ems="10"
                 android:gravity="start|top"
+                android:background="@drawable/strokers"
                 android:hint="Queries"
                 android:inputType="textMultiLine|textLongMessage"
-                android:paddingStart="5dp"
-                android:textColor="#757575"
-                android:textSize="25sp"
                 android:textStyle="normal"
 
                 app:layout_constraintEnd_toEndOf="parent"
@@ -190,27 +188,16 @@
                 android:layout_height="10dp"/>
             <Button
                 android:id="@+id/Send"
-                android:layout_width="110dp"
-                android:layout_height="45dp"
-                android:background="@drawable/buttonlayout"
-                android:paddingTop="3dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="SEND"
-                android:textAlignment="center"
+                android:text="Submit Query"
                 android:textColor="@color/white"
-                android:textSize="20sp"
-                android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/Query" />
         </LinearLayout>
-
-
-
-
-
-
 
     </LinearLayout>
 
