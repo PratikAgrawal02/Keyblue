@@ -52,6 +52,7 @@ public class Home extends AppCompatActivity {
     Button dismode;
     TextView news;
     NavigationView navigationView;
+    Button nationalEmergency, disasterManagement,ambulace,police,fire;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,10 +60,57 @@ public class Home extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         root=FirebaseDatabase.getInstance();
+        hook();
+
+        //Button Onclick Listeners to Contact Them
+        nationalEmergency.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent_01 = new Intent(Intent.ACTION_DIAL);
+                intent_01.setData(Uri.parse("tel:112"));
+                startActivity(intent_01);
+            }
+        });
+
+        disasterManagement.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent_02 = new Intent(Intent.ACTION_DIAL);
+                intent_02.setData(Uri.parse("tel:108"));
+                startActivity(intent_02);
+            }
+        });
+
+        ambulace.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent_03 = new Intent(Intent.ACTION_DIAL);
+                intent_03.setData(Uri.parse("tel:102"));
+                startActivity(intent_03);
+            }
+        });
+
+        police.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent_04 = new Intent(Intent.ACTION_DIAL);
+                intent_04.setData(Uri.parse("tel:100"));
+                startActivity(intent_04);
+            }
+        });
+
+        fire.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent_05 = new Intent(Intent.ACTION_DIAL);
+                intent_05.setData(Uri.parse("tel:101"));
+                startActivity(intent_05);
+            }
+        });
 
         reference=root.getReference("disaster");
 //        livedataget();
-        hook();
+
         loadpage();
         ActivityCompat.requestPermissions(this,
                 new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION},
@@ -289,5 +337,10 @@ public class Home extends AppCompatActivity {
          dismode = (Button)findViewById(R.id.dismode);
         drawerLayout =(DrawerLayout)findViewById(R.id.drawerlayout);
         navigationView= (NavigationView)findViewById(R.id.navigationlayout);
+        nationalEmergency = findViewById(R.id.nationalEmergency);
+        disasterManagement = findViewById(R.id.disasterManagement);
+        ambulace = findViewById(R.id.ambulance);
+        police = findViewById(R.id.police);
+        fire = findViewById(R.id.fire);
     }
 }
