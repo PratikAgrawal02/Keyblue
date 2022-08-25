@@ -34,6 +34,7 @@ import com.onesignal.OneSignal;
 
 import java.util.Objects;
 
+//side menu, illus, dismode
 public class Home extends AppCompatActivity {
 
     ImageView red_blink;
@@ -107,62 +108,65 @@ public class Home extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 int id = item.getItemId();
 
-                switch (id){
-                    case R.id.faq_menu:{
-                        Intent intent=new Intent(Home.this,
-                                Faq.class);
-                        startActivity(intent);
 
-                        break;
-                    }
-                    case R.id.Home_menu: {
 
-                        break;
-                    }
-                    case R.id.ngo_list:{
-                        Intent intent=new Intent(Home.this,
-                                Ngo_list.class);
-                        startActivity(intent);
-                        break;
-                    }
-                    case R.id.Contactus_menu: {
-                        Intent intent=new Intent(Home.this,
-                                Contact_Us.class);
-                        startActivity(intent);
 
-                        //Toast.makeText(Home.this, "hey/.....", Toast.LENGTH_SHORT).show();
-
-                        break;
-                    }
-                    case R.id.developer_menu: {
-                        Intent intent=new Intent(Home.this,
-                                About_Us.class);
-                        startActivity(intent);
-
-      
-
-                        break;
-                    }
-                    case R.id.privacy_policy_menu: {
-
-                        break;
-                    }
-                    case R.id.TnC_menu: {
-
-                        break;
-                    }
-                    case R.id.share_app_menu: {
-                        
-                        break;
-                    }
-                    case R.id.rate: {
-                        
-
-                        break;
-                    }
-                    default: return true;
-
-                }
+//                switch (id){
+//                    case R.id.faq_menu:{
+//                        Intent intent=new Intent(Home.this,
+//                                Faq.class);
+//                        startActivity(intent);
+//
+//                        break;
+//                    }
+//                    case R.id.Home_menu: {
+//
+//                        break;
+//                    }
+//                    case R.id.ngo_list:{
+//                        Intent intent=new Intent(Home.this,
+//                                Ngo_list.class);
+//                        startActivity(intent);
+//                        break;
+//                    }
+//                    case R.id.Contactus_menu: {
+//                        Intent intent=new Intent(Home.this,
+//                                Contact_Us.class);
+//                        startActivity(intent);
+//
+//                        //Toast.makeText(Home.this, "hey/.....", Toast.LENGTH_SHORT).show();
+//
+//                        break;
+//                    }
+//                    case R.id.developer_menu: {
+//                        Intent intent=new Intent(Home.this,
+//                                About_Us.class);
+//                        startActivity(intent);
+//
+//
+//
+//                        break;
+//                    }
+//                    case R.id.privacy_policy_menu: {
+//
+//                        break;
+//                    }
+//                    case R.id.TnC_menu: {
+//
+//                        break;
+//                    }
+//                    case R.id.share_app_menu: {
+//
+//                        break;
+//                    }
+//                    case R.id.rate: {
+//
+//
+//                        break;
+//                    }
+//                    default: return true;
+//
+//                }
 
                 return true;
             }
@@ -214,30 +218,31 @@ public class Home extends AppCompatActivity {
     }
 
     public void openillus(View view){
-        CardView cclicked = (CardView) view;
-        String tag = cclicked.getTag().toString();
-        Intent intent=new Intent(Home.this, MainActivity.class);
-        if(tag.equals("earthquake")){
-            intent.putExtra("mode",1);
-            startActivity(intent);
+        Toast.makeText(this, "coming soon..", Toast.LENGTH_SHORT).show();
+//        CardView cclicked = (CardView) view;
+//        String tag = cclicked.getTag().toString();
+//        Intent intent=new Intent(Home.this, MainActivity.class);
+//        if(tag.equals("earthquake")){
+//            intent.putExtra("mode",1);
+//            startActivity(intent);
+//
+//        }
+//        if(tag.equals("flood")){
+//            intent.putExtra("mode",3);
+//            startActivity(intent);
+//
+//        }
+//        if(tag.equals("landslide")){
+//            intent.putExtra("mode",2);
+//            startActivity(intent);
+//
+//        }
+//        if(tag.equals("thunderstorm")){
+//            intent.putExtra("mode",4);
+//            startActivity(intent);
+//
+//        }
 
-        }
-        if(tag.equals("flood")){
-            intent.putExtra("mode",3);
-            startActivity(intent);
-
-        }
-        if(tag.equals("landslide")){
-            intent.putExtra("mode",2);
-            startActivity(intent);
-
-        }
-        if(tag.equals("thunderstorm")){
-            intent.putExtra("mode",4);
-            startActivity(intent);
-
-        }
-        //Toast.makeText(this, ""+tag, Toast.LENGTH_SHORT).show();
     }
 
     public void dismodeclick(View view){

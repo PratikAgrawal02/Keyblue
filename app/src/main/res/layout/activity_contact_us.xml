@@ -20,6 +20,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
+
             <ImageButton
                 android:id="@+id/Back"
                 android:layout_width="63dp"
@@ -30,7 +31,8 @@
                 android:onClick="back"
                 android:src="@drawable/ic_baseline_arrow_back_24"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="TouchTargetSizeCheck">
 
             </ImageButton>
 
@@ -79,7 +81,8 @@
             app:layout_constraintBottom_toTopOf="@+id/subheading1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/heading" />
+            app:layout_constraintTop_toBottomOf="@+id/heading"
+            tools:ignore="TouchTargetSizeCheck" />
 
 
 
