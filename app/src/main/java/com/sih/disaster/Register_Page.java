@@ -73,8 +73,6 @@ public class Register_Page extends AppCompatActivity {
         AutoCompleteTextView autoCompleteTextView_02;
         //adddatatoapi();
 
-        userID = findViewById(R.id.userID);
-
         fullName = findViewById(R.id.userName);
         password = findViewById(R.id.password);
         confirmationPassword = findViewById(R.id.confirmPassword);

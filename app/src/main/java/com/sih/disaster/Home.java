@@ -61,7 +61,7 @@ public class Home extends AppCompatActivity {
         root=FirebaseDatabase.getInstance();
 
         reference=root.getReference("disaster");
-        livedataget();
+//        livedataget();
         hook();
         loadpage();
         ActivityCompat.requestPermissions(this,
@@ -101,8 +101,6 @@ public class Home extends AppCompatActivity {
         news = (TextView)findViewById(R.id.news);
         news.setSelected(true);
 
-
-
         ActionBarDrawerToggle toggle= new ActionBarDrawerToggle(this,drawerLayout,R.string.navigation_open,R.string.navigation_close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
@@ -110,9 +108,6 @@ public class Home extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 int id = item.getItemId();
-
-
-
 
                 switch (id){
                     case R.id.faq_menu:{
@@ -143,8 +138,6 @@ public class Home extends AppCompatActivity {
                                 About_Us.class);
                         startActivity(intent);
 
-
-
                         break;
                     }
                     case R.id.privacy_policy_menu: {
@@ -172,7 +165,6 @@ public class Home extends AppCompatActivity {
             }
         });
 
-
        // final LayoutInflater factory = getLayoutInflater();
         final View header = getLayoutInflater().inflate(R.layout.headerfile,null);
         ImageView insta =  (ImageView) header.findViewById(R.id.instaim);
@@ -182,51 +174,50 @@ public class Home extends AppCompatActivity {
                 Toast.makeText(Home.this, "insta", Toast.LENGTH_SHORT).show();
             }
         });
-
     }
 
 
-    public void livedataget() {
-        user = (TextView) findViewById(R.id.user_total);
-        deaths = (TextView) findViewById(R.id.deaths_total);
-        ranger = (TextView) findViewById(R.id.ranger_total);
-        ngo = (TextView) findViewById(R.id.ngo_total);
-        disaster = (TextView) findViewById(R.id.total_disaster);
-        data = root.getReference("data");
-        try {
-            data.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    for (DataSnapshot snapshot1 : snapshot.getChildren()) {
-                        if (Objects.equals(snapshot1.getKey(), "deaths")) {
-                            deaths.setText(snapshot1.getValue(Integer.class).toString());
-                        }
-                        else if (Objects.equals(snapshot1.getKey(), "disasters")) {
-                            disaster.setText(snapshot1.getValue(Integer.class).toString());
-                        }
-                        else if (Objects.equals(snapshot1.getKey(), "ngo")) {
-                            ngo.setText(snapshot1.getValue(Integer.class).toString());
-                        }
-                        else if (Objects.equals(snapshot1.getKey(), "rangers")) {
-                            ranger.setText(snapshot1.getValue(Integer.class).toString());
-                        }
-                        else if (Objects.equals(snapshot1.getKey(), "users")) {
-                            user.setText(snapshot1.getValue(Integer.class).toString());
-                        }
-
-                    }
-                }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
-
-                }
-            });
-        }
-        catch (Exception e){
-
-        }
-    }
+//    public void livedataget() {
+//        user = (TextView) findViewById(R.id.user_total);
+//        deaths = (TextView) findViewById(R.id.deaths_total);
+//        ranger = (TextView) findViewById(R.id.ranger_total);
+//        ngo = (TextView) findViewById(R.id.ngo_total);
+//        disaster = (TextView) findViewById(R.id.total_disaster);
+//        data = root.getReference("data");
+//        try {
+//            data.addValueEventListener(new ValueEventListener() {
+//                @Override
+//                public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                    for (DataSnapshot snapshot1 : snapshot.getChildren()) {
+//                        if (Objects.equals(snapshot1.getKey(), "deaths")) {
+//                            deaths.setText(snapshot1.getValue(Integer.class).toString());
+//                        }
+//                        else if (Objects.equals(snapshot1.getKey(), "disasters")) {
+//                            disaster.setText(snapshot1.getValue(Integer.class).toString());
+//                        }
+//                        else if (Objects.equals(snapshot1.getKey(), "ngo")) {
+//                            ngo.setText(snapshot1.getValue(Integer.class).toString());
+//                        }
+//                        else if (Objects.equals(snapshot1.getKey(), "rangers")) {
+//                            ranger.setText(snapshot1.getValue(Integer.class).toString());
+//                        }
+//                        else if (Objects.equals(snapshot1.getKey(), "users")) {
+//                            user.setText(snapshot1.getValue(Integer.class).toString());
+//                        }
+//
+//                    }
+//                }
+//
+//                @Override
+//                public void onCancelled(@NonNull DatabaseError error) {
+//
+//                }
+//            });
+//        }
+//        catch (Exception e){
+//
+//        }
+//    }
 
     public void openillus(View view){
         Toast.makeText(this, "coming soon..", Toast.LENGTH_SHORT).show();
@@ -292,15 +283,11 @@ public class Home extends AppCompatActivity {
     }
 
     private void hook() {
-
         red_blink= (ImageView) findViewById(R.id.red_blink);
         Animation animation1 = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.blink);
         red_blink.startAnimation(animation1);
          dismode = (Button)findViewById(R.id.dismode);
         drawerLayout =(DrawerLayout)findViewById(R.id.drawerlayout);
         navigationView= (NavigationView)findViewById(R.id.navigationlayout);
-        
-
-
     }
 }
