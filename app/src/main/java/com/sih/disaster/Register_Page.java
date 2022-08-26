@@ -57,6 +57,7 @@ public class Register_Page extends AppCompatActivity {
     ArrayAdapter<String> arrayAdapter_02;
 
     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+    DatabaseReference unsafe = FirebaseDatabase.getInstance().getReference("unsafe");
 
     SharedPreferences sharedPreferences;
     String Gen = "",URL="https://technophilesapi.herokuapp.com/user/create";
@@ -179,7 +180,8 @@ public class Register_Page extends AppCompatActivity {
                                         }
                                     }
                                 });
-                                preferences.edit().putString("number",number).apply();
+                                sharedPreferences.edit().putString("number",number).apply();
+                                unsafe.child(number).child("default").setValue("ok");
                                 databaseReference.child("users").child(number).child("Full Name").setValue(userName);
                                 databaseReference.child("users").child(number).child("Email ID").setValue(email);
                                 databaseReference.child("users").child(number).child("Date of Birth").setValue(dater);

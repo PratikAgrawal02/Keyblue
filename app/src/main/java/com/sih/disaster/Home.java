@@ -74,7 +74,7 @@ public class Home extends AppCompatActivity  implements OnMapReadyCallback{
     TextView news;
     SharedPreferences preferences;
     NavigationView navigationView;
-
+    TextView status;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -125,6 +125,40 @@ public class Home extends AppCompatActivity  implements OnMapReadyCallback{
 
             }
         });
+
+        try {
+            unsafe.child(preferences.getString("number","default")).addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    if (snapshot.hasChild("verified")){
+                        for (DataSnapshot dataSnapshot : snapshot.getChildren()){
+                            if (dataSnapshot.getKey().equals("verified")){
+                                String valueUpdate = snapshot.getValue(String.class);
+                                if (valueUpdate.equals("yes")){
+                                    status.setText("Status : Verified");
+                                }
+                                else{
+                                    status.setText("Status : Verification Pending");
+                                }
+                            }
+                        }
+                    }
+                    else {
+                        status.setText("");
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+
+
 
 
         news = (TextView)findViewById(R.id.news);
@@ -339,7 +373,7 @@ public class Home extends AppCompatActivity  implements OnMapReadyCallback{
          dismode = (Button)findViewById(R.id.dismode);
         drawerLayout =(DrawerLayout)findViewById(R.id.drawerlayout);
         navigationView= (NavigationView)findViewById(R.id.navigationlayout);
-
+        status = findViewById(R.id.status);
     }
 
     @Override
