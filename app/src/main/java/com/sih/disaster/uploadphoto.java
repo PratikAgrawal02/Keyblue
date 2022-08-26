@@ -7,8 +7,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.media.MediaMetadataRetriever;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -31,8 +34,8 @@ import java.util.Locale;
 public class uploadphoto extends AppCompatActivity {
 
 
-    Uri imageUri;
-    StorageReference storageReference;
+    Uri imageUri,videouri;
+    StorageReference storageReference,storageReference2;
     ProgressDialog progressDialog;
     SharedPreferences preferences;
     Button select,upload;
@@ -69,6 +72,38 @@ public class uploadphoto extends AppCompatActivity {
         });
 
     }
+    public void selectvideo(View view){
+        Intent intent = new Intent();
+        intent.setType("video/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(intent,200);
+    }
+    public void uploadvideo(View view){
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setTitle("Uploading File....");
+        progressDialog.show();
+
+
+        String fileName = preferences.getString("number","default");
+        storageReference2 = FirebaseStorage.getInstance().getReference("video/"+fileName);
+
+
+        storageReference2.putFile(videouri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                Toast.makeText(uploadphoto.this,"Successfully Uploaded", Toast.LENGTH_SHORT).show();
+                if (progressDialog.isShowing())
+                    progressDialog.dismiss();
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                if (progressDialog.isShowing())
+                    progressDialog.dismiss();
+                Toast.makeText(uploadphoto.this,"Failed to Upload",Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
 
     private void uploadImage() {
 
@@ -86,7 +121,7 @@ public class uploadphoto extends AppCompatActivity {
                 .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-
+                        firebaseimage.setImageURI(null);
                         firebaseimage.setBackgroundResource(R.drawable.icon);
                         Toast.makeText(uploadphoto.this,"Successfully Uploaded", Toast.LENGTH_SHORT).show();
                         if (progressDialog.isShowing())
@@ -128,11 +163,36 @@ public class uploadphoto extends AppCompatActivity {
 
 
         }
+        if (requestCode == 200 && data != null && data.getData() != null){
+
+            videouri = data.getData();
+
+            firebaseimage.setImageBitmap(getThumbVideo(this,videouri));
+           // firebaseimage.setImageURI(videouri);
+
+
+        }
     }
 
     @Override
     public void onBackPressed() {
         super.onBackPressed();
         finish();
+    }
+    public static Bitmap getThumbVideo(Context context, Uri videoUri){
+        Bitmap bitmap = null;
+        MediaMetadataRetriever mediaMetadataRetriever = null;
+        try {
+            mediaMetadataRetriever = new MediaMetadataRetriever();
+            mediaMetadataRetriever.setDataSource(context, videoUri);
+            bitmap = mediaMetadataRetriever.getFrameAtTime(1000, MediaMetadataRetriever.OPTION_CLOSEST_SYNC);
+        } catch ( Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (mediaMetadataRetriever != null) {
+                mediaMetadataRetriever.release();
+            }
+        }
+        return bitmap;
     }
 }

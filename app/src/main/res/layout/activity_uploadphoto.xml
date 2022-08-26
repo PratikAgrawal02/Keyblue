@@ -37,6 +37,17 @@
         android:layout_marginHorizontal="16dp"
         android:layout_marginBottom="32dp"
         android:text="Select Image"
+        app:layout_constraintBottom_toTopOf="@+id/selectvideo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+    <Button
+        android:id="@+id/selectvideo"
+        android:layout_width="0dp"
+        android:layout_height="70dp"
+        android:onClick="selectvideo"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginBottom="32dp"
+        android:text="Select Video"
         app:layout_constraintBottom_toTopOf="@+id/uploadimagebtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -45,9 +56,22 @@
         android:id="@+id/uploadimagebtn"
         android:layout_width="0dp"
         android:layout_height="70dp"
-        android:layout_marginBottom="168dp"
+        android:layout_marginBottom="110dp"
         android:layout_marginHorizontal="16dp"
         android:text="Upload Image"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
+    <Button
+        android:id="@+id/uploadvideo"
+        android:layout_width="0dp"
+        android:layout_height="70dp"
+        android:layout_marginBottom="30dp"
+        android:onClick="uploadvideo"
+
+        android:layout_marginHorizontal="16dp"
+        android:text="Upload Video"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"

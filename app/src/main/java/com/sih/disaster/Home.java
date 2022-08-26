@@ -14,6 +14,7 @@ import android.Manifest;
 import android.app.AlertDialog;
 import android.app.NotificationManager;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -67,6 +68,7 @@ public class Home extends AppCompatActivity  implements OnMapReadyCallback{
     DatabaseReference reference,unsafe=FirebaseDatabase.getInstance().getReference("unsafe");;
     DrawerLayout drawerLayout;
     FusedLocationProviderClient client;
+    String[] listofdisaster= {"Flood","Landslide","Earthquake","Thunderstorm"};
     TextView ngo, deaths, disaster,ranger,user;
     Button dismode;
     Location livelocation;
@@ -364,10 +366,32 @@ public class Home extends AppCompatActivity  implements OnMapReadyCallback{
 
     }
     public void unsafe(View view){
-        Toast.makeText(this, "Query has been sent to admin for verification", Toast.LENGTH_SHORT).show();
-        unsafe.child(preferences.getString("number","default")).child("lat").setValue(livelocation.getLatitude());
-        unsafe.child(preferences.getString("number","default")).child("long").setValue(livelocation.getLongitude());
-        unsafe.child(preferences.getString("number","default")).child("verified").setValue("no");
+        AlertDialog.Builder builder = new AlertDialog.Builder(Home.this);
+        builder.setTitle("Select Type of Disaster");
+        builder.setIcon(R.drawable.icon);
+        builder.setSingleChoiceItems(listofdisaster, -1, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+
+                Toast.makeText(Home.this, "Query has been sent to admin for verification", Toast.LENGTH_SHORT).show();
+                unsafe.child(preferences.getString("number","default")).child("lat").setValue(livelocation.getLatitude());
+                unsafe.child(preferences.getString("number","default")).child("long").setValue(livelocation.getLongitude());
+                unsafe.child(preferences.getString("number","default")).child("verified").setValue("no");
+                unsafe.child(preferences.getString("number","default")).child("type").setValue(listofdisaster[i]);
+                dialogInterface.dismiss();
+            }
+        });
+        builder.setNeutralButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+
+            }
+        });
+        AlertDialog dialog = builder.create();
+        dialog.show();
+
 
     }
 
