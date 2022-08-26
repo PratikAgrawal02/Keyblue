@@ -224,6 +224,12 @@ public class Home extends AppCompatActivity  implements OnMapReadyCallback{
 
                         break;
                     }
+                    case R.id.reports: {
+                        Intent intent=new Intent(Home.this,
+                                History_Page.class);
+                        startActivity(intent);
+                        break;
+                    }
                     case R.id.rate: {
 
 

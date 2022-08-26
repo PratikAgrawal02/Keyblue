@@ -7,6 +7,9 @@
                 <item android:id="@+id/Home_menu"
                     android:icon="@drawable/home_vector"
                     android:title="Home"/>
+                <item android:id="@+id/reports"
+                    android:icon="@drawable/ic_baseline_timeline_24"
+                    android:title="Disaster Reports"/>
                 <item android:id="@+id/ngo_list"
                     android:icon="@drawable/ic_baseline_apartment_24"
                     android:title="NGO List"/>
