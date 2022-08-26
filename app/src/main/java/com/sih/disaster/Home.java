@@ -6,15 +6,19 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.cardview.widget.CardView;
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.Manifest;
 import android.app.AlertDialog;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.location.Location;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -30,6 +34,19 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.GroundOverlay;
+import com.google.android.gms.maps.model.GroundOverlayOptions;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -41,20 +58,23 @@ import com.onesignal.OneSignal;
 import java.util.Objects;
 
 
-public class Home extends AppCompatActivity {
+public class Home extends AppCompatActivity  implements OnMapReadyCallback{
 
     ImageView red_blink;
     Boolean disastermode=false;
     FirebaseDatabase root;
-
+    SupportMapFragment mapFragment;
     DatabaseReference reference,unsafe=FirebaseDatabase.getInstance().getReference("unsafe");;
     DrawerLayout drawerLayout;
+    FusedLocationProviderClient client;
     TextView ngo, deaths, disaster,ranger,user;
     Button dismode;
+    Location livelocation;
+    RadiusAnimation groundAnimation;
     TextView news;
     SharedPreferences preferences;
     NavigationView navigationView;
-    Button nationalEmergency, disasterManagement,ambulace,police,fire;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,52 +85,11 @@ public class Home extends AppCompatActivity {
         hook();
         preferences = getSharedPreferences("user",MODE_PRIVATE);
         //Button Onclick Listeners to Contact Them
-        nationalEmergency.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent_01 = new Intent(Intent.ACTION_DIAL);
-                intent_01.setData(Uri.parse("tel:112"));
-                startActivity(intent_01);
-            }
-        });
-
-        disasterManagement.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent_02 = new Intent(Intent.ACTION_DIAL);
-                intent_02.setData(Uri.parse("tel:108"));
-                startActivity(intent_02);
-            }
-        });
-
-        ambulace.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent_03 = new Intent(Intent.ACTION_DIAL);
-                intent_03.setData(Uri.parse("tel:102"));
-                startActivity(intent_03);
-            }
-        });
-
-        police.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent_04 = new Intent(Intent.ACTION_DIAL);
-                intent_04.setData(Uri.parse("tel:100"));
-                startActivity(intent_04);
-            }
-        });
-
-        fire.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent_05 = new Intent(Intent.ACTION_DIAL);
-                intent_05.setData(Uri.parse("tel:101"));
-                startActivity(intent_05);
-            }
-        });
-
+        mapFragment = (SupportMapFragment) getSupportFragmentManager()
+                .findFragmentById(R.id.map1);
         reference=root.getReference("disaster");
+        client = LocationServices.getFusedLocationProviderClient(this);
+        getLocationPermission();
 //        livedataget();
 
         loadpage();
@@ -193,6 +172,11 @@ public class Home extends AppCompatActivity {
                     case R.id.privacy_policy_menu: {
 
                         break;
+                    }case R.id.emergency: {
+                        Intent intent=new Intent(Home.this,
+                                contact_emergency.class);
+                        startActivity(intent);
+                        break;
                     }
                     case R.id.TnC_menu: {
 
@@ -227,47 +211,55 @@ public class Home extends AppCompatActivity {
     }
 
 
-//    public void livedataget() {
-//        user = (TextView) findViewById(R.id.user_total);
-//        deaths = (TextView) findViewById(R.id.deaths_total);
-//        ranger = (TextView) findViewById(R.id.ranger_total);
-//        ngo = (TextView) findViewById(R.id.ngo_total);
-//        disaster = (TextView) findViewById(R.id.total_disaster);
-//        data = root.getReference("data");
-//        try {
-//            data.addValueEventListener(new ValueEventListener() {
-//                @Override
-//                public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                    for (DataSnapshot snapshot1 : snapshot.getChildren()) {
-//                        if (Objects.equals(snapshot1.getKey(), "deaths")) {
-//                            deaths.setText(snapshot1.getValue(Integer.class).toString());
-//                        }
-//                        else if (Objects.equals(snapshot1.getKey(), "disasters")) {
-//                            disaster.setText(snapshot1.getValue(Integer.class).toString());
-//                        }
-//                        else if (Objects.equals(snapshot1.getKey(), "ngo")) {
-//                            ngo.setText(snapshot1.getValue(Integer.class).toString());
-//                        }
-//                        else if (Objects.equals(snapshot1.getKey(), "rangers")) {
-//                            ranger.setText(snapshot1.getValue(Integer.class).toString());
-//                        }
-//                        else if (Objects.equals(snapshot1.getKey(), "users")) {
-//                            user.setText(snapshot1.getValue(Integer.class).toString());
-//                        }
-//
-//                    }
-//                }
-//
-//                @Override
-//                public void onCancelled(@NonNull DatabaseError error) {
-//
-//                }
-//            });
-//        }
-//        catch (Exception e){
-//
-//        }
-//    }
+
+    private void getLocationPermission() {
+    /*
+     * Request location permission, so that we can get the location of the
+     * device. The result of the permission request is handled by a callback,
+     * onRequestPermissionsResult.
+     */
+    if (ContextCompat.checkSelfPermission(this.getApplicationContext(),
+            android.Manifest.permission.ACCESS_FINE_LOCATION)
+            == PackageManager.PERMISSION_GRANTED) {
+
+        getlivelocation();
+    } else {
+        ActivityCompat.requestPermissions(this,
+                new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION},
+                44);
+    }
+
+    }
+    public void getlivelocation() {
+        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            Toast.makeText(this, "no permissions", Toast.LENGTH_SHORT).show();
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
+        }
+        Task<Location> task = client.getLastLocation();
+        task.addOnSuccessListener(new OnSuccessListener<Location>() {
+            @Override
+            public void onSuccess(Location location) {
+                if(location != null){
+                    livelocation=location;
+                    mapFragment.getMapAsync(Home.this);
+
+                    //Toast.makeText(MapsActivity.this, ""+location.toString(), Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    Toast.makeText(Home.this, "location not got", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+    }
+
 
     public void openillus(View view){
         //Toast.makeText(this, "coming soon..", Toast.LENGTH_SHORT).show();
@@ -332,6 +324,13 @@ public class Home extends AppCompatActivity {
         drawerLayout.openDrawer(GravityCompat.START);
 
     }
+    public void unsafe(View view){
+        Toast.makeText(this, "clicked", Toast.LENGTH_SHORT).show();
+        unsafe.child(preferences.getString("number","default")).child("lat").setValue(livelocation.getLatitude());
+        unsafe.child(preferences.getString("number","default")).child("long").setValue(livelocation.getLongitude());
+        unsafe.child(preferences.getString("number","default")).child("verified").setValue("no");
+
+    }
 
     private void hook() {
         red_blink= (ImageView) findViewById(R.id.red_blink);
@@ -340,10 +339,25 @@ public class Home extends AppCompatActivity {
          dismode = (Button)findViewById(R.id.dismode);
         drawerLayout =(DrawerLayout)findViewById(R.id.drawerlayout);
         navigationView= (NavigationView)findViewById(R.id.navigationlayout);
-        nationalEmergency = findViewById(R.id.nationalEmergency);
-        disasterManagement = findViewById(R.id.disasterManagement);
-        ambulace = findViewById(R.id.ambulance);
-        police = findViewById(R.id.police);
-        fire = findViewById(R.id.fire);
+
+    }
+
+    @Override
+    public void onMapReady(@NonNull GoogleMap googleMap) {
+        LatLng latLng =  new LatLng(livelocation.getLatitude(),livelocation.getLongitude());
+        googleMap.addMarker(new MarkerOptions().position(latLng).title("Your current Location").icon(BitmapDescriptorFactory.defaultMarker(205))).setTag("curr");
+
+        GroundOverlayOptions groundOverlayOptions= new GroundOverlayOptions()
+                .image(BitmapDescriptorFactory.fromResource(R.drawable.blue_dot))
+                .position( latLng,50);
+
+        GroundOverlay groundOverlay = googleMap.addGroundOverlay(groundOverlayOptions);
+        groundAnimation = new RadiusAnimation(groundOverlay);
+        groundAnimation.setRepeatCount(Animation.INFINITE);
+        groundAnimation.setRepeatMode(Animation.RESTART);
+        groundAnimation.setDuration(2000);
+        mapFragment.getView().startAnimation(groundAnimation);
+        googleMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
+        googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng,10f));
     }
 }

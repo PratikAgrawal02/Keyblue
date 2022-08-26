@@ -133,7 +133,7 @@
 
                 <Space
                     android:layout_width="wrap_content"
-                    android:layout_height="20dp"/>
+                    android:layout_height="15dp"/>
 
                 <TextView
                     android:id="@+id/news"
@@ -148,77 +148,36 @@
                     android:singleLine="true"
                     android:textSize="20sp"
                     android:textStyle="bold" />
-
                 <Space
                     android:layout_width="wrap_content"
-                    android:layout_height="20dp" />
+                    android:layout_height="5dp"/>
 
-                <androidx.appcompat.widget.AppCompatButton
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:background="@drawable/sos_button"
-                    android:text="SOS"
-                    android:textSize="20sp"/>
 
-                <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="30dp"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Emergency Contact Numbers : "/>
-
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/nationalEmergency"
+                <fragment
+                    android:id="@+id/map1"
+                    android:name="com.google.android.gms.maps.SupportMapFragment"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="NATIONAL EMERGENCY NUMBER"
-                    android:layout_marginTop="3dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_marginLeft="20dp"/>
+                    android:layout_height="525dp" />
 
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/disasterManagement"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="DISASTER MANAGEMENT SERVICES "
-                    android:layout_marginTop="5dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_marginLeft="20dp"/>
 
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/ambulance"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="AMBULANCE"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_marginLeft="20dp"/>
 
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/police"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="POLICE DEPARTMENT"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_marginLeft="20dp"/>
 
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/fire"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="FIRE DEPARTMENT"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_marginLeft="20dp"/>
 
             </LinearLayout>
 
         </ScrollView>
 
-
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            app:layout_constraintBottom_toTopOf="@+id/hw1"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginRight="7dp"
+            android:layout_marginBottom="7dp"
+            android:onClick="unsafe"
+            android:background="@drawable/sos_button"
+            android:text="SOS"
+            android:textSize="20sp"/>
         <Button
             android:id="@+id/dismode"
             android:layout_width="wrap_content"
@@ -411,7 +370,7 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:alpha="0"
+        android:alpha="1"
         android:visibility="visible"
         app:headerLayout="@layout/headerfile"
         app:itemIconTint="@color/blue"

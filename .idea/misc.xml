@@ -18,10 +18,12 @@
         <entry key="..\:/AndroidStudioProjects/Disaster/app/src/main/res/drawable/privacy_policy.xml" value="0.1255" />
         <entry key="..\:/AndroidStudioProjects/Disaster/app/src/main/res/drawable/rateapp.xml" value="0.1255" />
         <entry key="..\:/AndroidStudioProjects/Disaster/app/src/main/res/drawable/share_vector.xml" value="0.1255" />
+        <entry key="..\:/AndroidStudioProjects/Disaster/app/src/main/res/drawable/sos_button.xml" value="0.1775" />
         <entry key="..\:/AndroidStudioProjects/Disaster/app/src/main/res/drawable/strokers.xml" value="0.1" />
         <entry key="..\:/AndroidStudioProjects/Disaster/app/src/main/res/layout/activity_about_us.xml" value="0.1" />
         <entry key="..\:/AndroidStudioProjects/Disaster/app/src/main/res/layout/activity_contact_emergency.xml" value="0.19067028985507245" />
         <entry key="..\:/AndroidStudioProjects/Disaster/app/src/main/res/layout/activity_contact_us.xml" value="0.22" />
+        <entry key="..\:/AndroidStudioProjects/Disaster/app/src/main/res/layout/activity_custom_list_view.xml" value="0.19067028985507245" />
         <entry key="..\:/AndroidStudioProjects/Disaster/app/src/main/res/layout/activity_faq.xml" value="0.1" />
         <entry key="..\:/AndroidStudioProjects/Disaster/app/src/main/res/layout/activity_home.xml" value="0.22" />
         <entry key="..\:/AndroidStudioProjects/Disaster/app/src/main/res/layout/activity_login_page.xml" value="0.16666666666666666" />
@@ -30,6 +32,7 @@
         <entry key="..\:/AndroidStudioProjects/Disaster/app/src/main/res/layout/activity_ngo_list.xml" value="0.1393110435663627" />
         <entry key="..\:/AndroidStudioProjects/Disaster/app/src/main/res/layout/activity_register_page.xml" value="0.22" />
         <entry key="..\:/AndroidStudioProjects/Disaster/app/src/main/res/layout/activity_splash_screen.xml" value="0.2864583333333333" />
+        <entry key="..\:/AndroidStudioProjects/Disaster/app/src/main/res/layout/activity_uploadphoto.xml" value="0.19067028985507245" />
         <entry key="..\:/AndroidStudioProjects/Disaster/app/src/main/res/layout/headerfile.xml" value="0.2341880341880342" />
         <entry key="..\:/AndroidStudioProjects/Disaster/app/src/main/res/layout/list_item.xml" value="0.1" />
         <entry key="..\:/AndroidStudioProjects/Disaster/app/src/main/res/layout/loading.xml" value="0.2223731884057971" />

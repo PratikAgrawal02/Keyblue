@@ -21,6 +21,9 @@
         android:theme="@style/Theme.Disaster"
         tools:targetApi="31">
         <activity
+            android:name=".uploadphoto"
+            android:exported="false" />
+        <activity
             android:name=".contact_emergency"
             android:exported="false" />
         <!--
@@ -66,6 +69,8 @@
         <activity
             android:name=".Login_Page"
             android:exported="false" />
+        <activity android:name=".Custom_ListView"
+            android:exported="false"/>
         <activity
             android:name=".Splash_Screen"
             android:exported="true">

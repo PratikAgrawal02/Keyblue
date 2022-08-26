@@ -13,6 +13,10 @@
                 <item android:id="@+id/faq_menu"
                     android:title="FAQ Page"
                     android:icon="@drawable/faq_vector"/>
+                <item android:id="@+id/emergency"
+                    android:icon="@drawable/ic_baseline_call_24"
+                    android:title="Emergency numbers"/>
+
                 <item android:title="Contact Us"
                     android:icon="@drawable/about_us_vector"
                     android:id="@+id/Contactus_menu"/>
