@@ -133,7 +133,7 @@ public class Home extends AppCompatActivity  implements OnMapReadyCallback{
                     if (snapshot.hasChild("verified")){
                         for (DataSnapshot dataSnapshot : snapshot.getChildren()){
                             if (dataSnapshot.getKey().equals("verified")){
-                                String valueUpdate = snapshot.getValue(String.class);
+                                String valueUpdate = dataSnapshot.getValue(String.class);
                                 if (valueUpdate.equals("yes")){
                                     status.setText("Status : Verified");
                                 }
@@ -246,6 +246,11 @@ public class Home extends AppCompatActivity  implements OnMapReadyCallback{
 
 
 
+    public void uploadphoto(View view){
+        Intent intent=new Intent(Home.this,
+                uploadphoto.class);
+        startActivity(intent);
+    }
     private void getLocationPermission() {
     /*
      * Request location permission, so that we can get the location of the
@@ -359,7 +364,7 @@ public class Home extends AppCompatActivity  implements OnMapReadyCallback{
 
     }
     public void unsafe(View view){
-        Toast.makeText(this, "clicked", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Query has been sent to admin for verification", Toast.LENGTH_SHORT).show();
         unsafe.child(preferences.getString("number","default")).child("lat").setValue(livelocation.getLatitude());
         unsafe.child(preferences.getString("number","default")).child("long").setValue(livelocation.getLongitude());
         unsafe.child(preferences.getString("number","default")).child("verified").setValue("no");

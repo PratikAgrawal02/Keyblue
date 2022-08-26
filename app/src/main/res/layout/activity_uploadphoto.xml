@@ -10,7 +10,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Firebase Cloud Storage"
+        android:text="SOS Verification"
         android:textColor="@color/black"
         android:textSize="26dp"
         android:textStyle="bold"
@@ -28,7 +28,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView"
         android:layout_marginHorizontal="16dp"
         android:layout_marginVertical="30dp"
-        tools:srcCompat="@tools:sample/avatars" />
+        android:src="@drawable/icon" />
 
     <Button
         android:id="@+id/selectImagebtn"

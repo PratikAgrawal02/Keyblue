@@ -4,9 +4,11 @@ package com.sih.disaster;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -32,14 +34,16 @@ public class uploadphoto extends AppCompatActivity {
     Uri imageUri;
     StorageReference storageReference;
     ProgressDialog progressDialog;
+    SharedPreferences preferences;
     Button select,upload;
     ImageView firebaseimage;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
 
         setContentView(R.layout.activity_uploadphoto);
-
+        preferences= getSharedPreferences("user",MODE_PRIVATE);
         select = (Button) findViewById(R.id.selectImagebtn);
         upload = (Button)findViewById(R.id.uploadimagebtn);
         firebaseimage = (ImageView)findViewById(R.id.firebaseimage);
@@ -73,9 +77,8 @@ public class uploadphoto extends AppCompatActivity {
         progressDialog.show();
 
 
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy_MM_dd_HH_mm_ss", Locale.CANADA);
-        Date now = new Date();
-        String fileName = formatter.format(now);
+
+        String fileName = preferences.getString("number","default");
         storageReference = FirebaseStorage.getInstance().getReference("images/"+fileName);
 
 
@@ -84,7 +87,7 @@ public class uploadphoto extends AppCompatActivity {
                     @Override
                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
 
-                        firebaseimage.setImageURI(null);
+                        firebaseimage.setBackgroundResource(R.drawable.icon);
                         Toast.makeText(uploadphoto.this,"Successfully Uploaded", Toast.LENGTH_SHORT).show();
                         if (progressDialog.isShowing())
                             progressDialog.dismiss();
@@ -125,5 +128,11 @@ public class uploadphoto extends AppCompatActivity {
 
 
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
     }
 }

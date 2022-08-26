@@ -20,16 +20,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Disaster"
         tools:targetApi="31">
-<<<<<<< HEAD
-        <activity
-            android:name=".uploadphoto"
-            android:exported="false" />
+
+
         <activity
             android:name=".contact_emergency"
             android:exported="false" />
-=======
 
->>>>>>> 68c95a262ce19cbd6107e230f662039b54e4a7f7
         <!--
              TODO: Before you run your application, you need a Google Maps API key.
 
@@ -75,6 +71,9 @@
             android:exported="false" />
         <activity android:name=".Custom_ListView"
             android:exported="false"/>
+        <activity
+            android:name=".uploadphoto"
+            android:exported="false" />
         <activity
             android:name=".Splash_Screen"
             android:exported="true">
