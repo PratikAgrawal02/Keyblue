@@ -65,7 +65,7 @@ public class Home extends AppCompatActivity  implements OnMapReadyCallback{
     Boolean disastermode=false;
     FirebaseDatabase root;
     SupportMapFragment mapFragment;
-    DatabaseReference reference,unsafe=FirebaseDatabase.getInstance().getReference("unsafe");;
+    DatabaseReference reference,unsafe=FirebaseDatabase.getInstance().getReference("unsafe");
     DrawerLayout drawerLayout;
     FusedLocationProviderClient client;
     String[] listofdisaster= {"Flood","Landslide","Earthquake","Thunderstorm"};
@@ -77,6 +77,8 @@ public class Home extends AppCompatActivity  implements OnMapReadyCallback{
     SharedPreferences preferences;
     NavigationView navigationView;
     TextView status;
+    String[] numbers = {"9696545487","8965854521"};
+    String[] fam = {"mom","uncle"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -391,8 +393,28 @@ public class Home extends AppCompatActivity  implements OnMapReadyCallback{
         });
         AlertDialog dialog = builder.create();
         dialog.show();
+    }
 
-
+    public void callFamily(View view){
+        AlertDialog.Builder builder = new AlertDialog.Builder(Home.this);
+        builder.setTitle("Whom To Call");
+        builder.setIcon(R.drawable.icon);
+        builder.setSingleChoiceItems(fam, -1, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                Intent intent_01 = new Intent(Intent.ACTION_DIAL);
+                intent_01.setData(Uri.parse("tel:"+numbers[i]));
+                startActivity(intent_01);
+                dialogInterface.dismiss();
+            }
+        });
+        builder.setNeutralButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+            }
+        });
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 
     private void hook() {
