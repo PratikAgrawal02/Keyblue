@@ -4,7 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
@@ -14,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -29,9 +32,11 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Ngo_list extends AppCompatActivity {
     ArrayList<String> namer = new ArrayList<String>();
+    List<String> numbers = new ArrayList<String>();
     ArrayAdapter<String> adapter;
     AlertDialog dialog;
 
@@ -94,6 +99,7 @@ public class Ngo_list extends AppCompatActivity {
                     resNGO += ".\tEmail ID : " +  NGOemail + ".\n";
 
                     namer.add(resNGO);
+                    numbers.add(NGOPhone);
                     adapter.notifyDataSetChanged();
 //                    Log.i("NGO", String.valueOf(namer));
                 }
@@ -117,7 +123,18 @@ public class Ngo_list extends AppCompatActivity {
         DownloadTask downloadTask = new DownloadTask();
         downloadTask.execute("https://technophilesapi.herokuapp.com/ngo/findAll");
 
+        listNGO.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent = new Intent(Intent.ACTION_DIAL);
+                intent.setData(Uri.parse("tel:" + numbers.get(i)));
+                startActivity(intent);
+            }
+        });
+
         listNGO.setAdapter(adapter);
+
+
     }
     public void back(View view){
         finish();
