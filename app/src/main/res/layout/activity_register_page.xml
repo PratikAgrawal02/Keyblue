@@ -49,9 +49,7 @@
                 android:layout_marginTop="30dp"
                 android:text="Enter Your Full Name"
                 android:textSize="18sp"
-                android:textStyle="bold">
-
-            </TextView>
+                android:textStyle="bold"/>
 
             <EditText
                 android:id="@+id/userName"
@@ -73,9 +71,7 @@
                 android:layout_marginTop="20dp"
                 android:text="Enter Email ID"
                 android:textSize="18sp"
-                android:textStyle="bold">
-
-            </TextView>
+                android:textStyle="bold"/>
 
             <EditText
                 android:id="@+id/userEmailID"
@@ -98,7 +94,7 @@
                 android:layout_marginTop="20dp"
                 android:text="Enter Mobile Number"
                 android:textSize="18sp"
-                android:textStyle="bold"></TextView>
+                android:textStyle="bold"/>
 
             <EditText
                 android:id="@+id/userPhoneNumber"
@@ -119,11 +115,83 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="22dp"
                 android:layout_marginTop="20dp"
+                android:text="Enter Emergency Contact Details 1"
+                android:textSize="18sp"
+                android:textStyle="bold"/>
+
+            <EditText
+                android:id="@+id/useremergencyName1"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="20dp"
+                android:background="@drawable/strokers"
+                android:hint="Enter Relation with Individual"
+                android:inputType="text"
+                android:maxLines="1"
+                android:paddingStart="20dp"
+                android:paddingEnd="0dp" />
+
+            <EditText
+                android:id="@+id/useremergency1"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="20dp"
+                android:background="@drawable/strokers"
+                android:hint="Enter Emergency Number"
+                android:inputType="phone"
+                android:maxLines="1"
+                android:paddingStart="20dp"
+                android:paddingEnd="0dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="22dp"
+                android:layout_marginTop="20dp"
+                android:text="Enter Emergency Contact Deatils 2"
+                android:textSize="18sp"
+                android:textStyle="bold"/>
+
+            <EditText
+                android:id="@+id/useremergencyName2"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="20dp"
+                android:background="@drawable/strokers"
+                android:hint="Enter Relation with Individual"
+                android:inputType="text"
+                android:maxLines="1"
+                android:paddingStart="20dp"
+                android:paddingEnd="0dp" />
+
+            <EditText
+                android:id="@+id/useremergency2"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="20dp"
+                android:background="@drawable/strokers"
+                android:hint="Enter Emergency Number"
+                android:inputType="phone"
+                android:maxLines="1"
+                android:paddingStart="20dp"
+                android:paddingEnd="0dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="22dp"
+                android:layout_marginTop="20dp"
                 android:text="Enter Date Of Birth"
                 android:textSize="18sp"
-                android:textStyle="bold">
-
-            </TextView>
+                android:textStyle="bold"/>
 
             <EditText
                 android:id="@+id/userDateOfBirth"
@@ -205,9 +273,7 @@
                 android:layout_marginTop="20dp"
                 android:text="Choose Password"
                 android:textSize="18sp"
-                android:textStyle="bold">
-
-            </TextView>
+                android:textStyle="bold"/>
 
             <EditText
                 android:id="@+id/password"
@@ -230,9 +296,7 @@
                 android:layout_marginTop="20dp"
                 android:text="Confirm The Password"
                 android:textSize="18sp"
-                android:textStyle="bold">
-
-            </TextView>
+                android:textStyle="bold"/>
 
             <EditText
                 android:id="@+id/confirmPassword"

@@ -48,6 +48,7 @@ public class Register_Page extends AppCompatActivity {
     Button registerButton;
     TextView loginHere;
     SharedPreferences preferences;
+    EditText emergencyRelation1,emergencyNumber1,emergencyRelation2,emergencyNumber2;
 
     String[] genders = {"Male","Female","Others"};
     String[] bloodGroups = {"O+","O-","A+","A-","B+","B-","AB+","AB-"};
@@ -86,6 +87,11 @@ public class Register_Page extends AppCompatActivity {
         EmailID = findViewById(R.id.userEmailID);
         phoneNumber = findViewById(R.id.userPhoneNumber);
         userDateofBirth = findViewById(R.id.userDateOfBirth);
+        //Emergency Details
+        emergencyNumber1 = findViewById(R.id.useremergency1);
+        emergencyNumber2 = findViewById(R.id.useremergency2);
+        emergencyRelation1 = findViewById(R.id.useremergencyName1);
+        emergencyRelation2 = findViewById(R.id.useremergencyName2);
 
         Calendar calendar = Calendar.getInstance();
         int year = calendar.get(Calendar.YEAR);
@@ -139,7 +145,13 @@ public class Register_Page extends AppCompatActivity {
                 String email = EmailID.getText().toString();
                 String number = phoneNumber.getText().toString();
 
-                if (userName.isEmpty() || pass.isEmpty() || confPass.isEmpty() || email.isEmpty() || number.isEmpty() || dater.isEmpty() || Gen.isEmpty() || BloodGrp.isEmpty()){
+                //Emergency Details
+                String emerNum1 = emergencyNumber1.getText().toString();
+                String emerNum2 = emergencyNumber2.getText().toString();
+                String emerRelation1 = emergencyRelation1.getText().toString();
+                String emerRelation2 = emergencyRelation2.getText().toString();
+
+                if (userName.isEmpty() || pass.isEmpty() || confPass.isEmpty() || email.isEmpty() || number.isEmpty() || dater.isEmpty() || Gen.isEmpty() || BloodGrp.isEmpty() || emerNum1.isEmpty() || emerNum2.isEmpty() || emerRelation1.isEmpty() || emerRelation2.isEmpty()){
                     Toast.makeText(Register_Page.this, "Please Enter Every Detail", Toast.LENGTH_SHORT).show();
                 }
                 else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
@@ -147,10 +159,20 @@ public class Register_Page extends AppCompatActivity {
                     EmailID.setError("Enter Valid Email");
                     EmailID.requestFocus();
                 }
-                else if (number.length()!=10){
+                else if (number.length()!=10 ){
                     Toast.makeText(Register_Page.this, "Mobile Number should have 10 Digits", Toast.LENGTH_SHORT).show();
                     phoneNumber.setError("Mobile Number should have 10 Digits");
                     phoneNumber.requestFocus();
+                }
+                else if (emerNum1.length() != 10){
+                    Toast.makeText(Register_Page.this, "Mobile Number should have 10 Digits", Toast.LENGTH_SHORT).show();
+                    emergencyNumber1.setError("Mobile Number should have 10 Digits");
+                    emergencyNumber1.requestFocus();
+                }
+                else if (emerNum2.length() != 10){
+                    Toast.makeText(Register_Page.this, "Mobile Number should have 10 Digits", Toast.LENGTH_SHORT).show();
+                    emergencyNumber2.setError("Mobile Number should have 10 Digits");
+                    emergencyNumber2.requestFocus();
                 }
                 else if (pass.length()<8){
                     Toast.makeText(Register_Page.this, "Password should be of atleast 8 Characters", Toast.LENGTH_SHORT).show();
@@ -184,6 +206,10 @@ public class Register_Page extends AppCompatActivity {
                                 unsafe.child(number).child("default").setValue("ok");
                                 databaseReference.child("users").child(number).child("Full Name").setValue(userName);
                                 databaseReference.child("users").child(number).child("Email ID").setValue(email);
+                                //Emergency
+                                databaseReference.child("users").child(number).child("Relation01").child(emerRelation1).setValue(emerNum1);
+                                databaseReference.child("users").child(number).child("Relation02").child(emerRelation2).setValue(emerNum2);
+                                //Emergency
                                 databaseReference.child("users").child(number).child("Date of Birth").setValue(dater);
                                 databaseReference.child("users").child(number).child("Gender").setValue(Gen);
                                 databaseReference.child("users").child(number).child("BloodGroup").setValue(BloodGrp);
