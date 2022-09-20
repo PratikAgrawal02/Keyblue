@@ -85,8 +85,9 @@ public class Home extends AppCompatActivity  implements OnMapReadyCallback{
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        root=FirebaseDatabase.getInstance();
-        hook();
+        //root=FirebaseDatabase.getInstance();
+        //hook();
+        //loadpage();
         preferences = getSharedPreferences("user",MODE_PRIVATE);
         //Button Onclick Listeners to Contact Them
         mapFragment = (SupportMapFragment) getSupportFragmentManager()
@@ -96,7 +97,7 @@ public class Home extends AppCompatActivity  implements OnMapReadyCallback{
         getLocationPermission();
 //        livedataget();
 
-        loadpage();
+
         ActivityCompat.requestPermissions(this,
                 new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION},
                 44);
