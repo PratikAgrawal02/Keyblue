@@ -74,7 +74,7 @@ public class Register_Page extends AppCompatActivity {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
 
         sharedPreferences= getSharedPreferences("user",MODE_PRIVATE);
-        AutoCompleteTextView autoCompleteTextView;
+        //AutoCompleteTextView autoCompleteTextView;
         AutoCompleteTextView autoCompleteTextView_02;
         //adddatatoapi();
         myAuth = FirebaseAuth.getInstance();
@@ -113,7 +113,7 @@ public class Register_Page extends AppCompatActivity {
                 datePickerDialog.show();
             }
         });
-
+        AutoCompleteTextView autoCompleteTextView;
         autoCompleteTextView = findViewById(R.id.gender_Selector);
         arrayAdapter = new ArrayAdapter<String>(this,R.layout.list_item,genders);
         autoCompleteTextView.setAdapter(arrayAdapter);
