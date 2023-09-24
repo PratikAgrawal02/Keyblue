@@ -56,7 +56,7 @@ Here are some screenshots of the KeyBlue App in action:
 ![Screenshot 1](insert-screenshot-1-image-url-here)
 *Screenshot 1: Pre-Disaster Stage*
 
-![Screenshot 2](insert-screenshot-2-image-url-here)
+![Screenshot 2](https://media.discordapp.net/attachments/929962336616321027/1155502795441578084/Screenshot_2022-09-20-19-38-21-50_eff019977d1443601861c535007260ac.jpg?width=402&height=871)
 *Screenshot 2: Emergency Stage*
 
 ![Screenshot 3](insert-screenshot-3-image-url-here)
