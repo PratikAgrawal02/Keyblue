@@ -53,14 +53,14 @@ Welcome to KeyBlue App! KeyBlue is a comprehensive mobile application designed t
 
 Here are some screenshots of the KeyBlue App in action:
 
-![Screenshot 1](insert-screenshot-1-image-url-here)
+![Screenshot 1](https://media.discordapp.net/attachments/929962336616321027/1155502794799857674/Screenshot_2022-09-20-19-37-31-23_eff019977d1443601861c535007260ac.jpg?width=402&height=871)
 *Screenshot 1: Pre-Disaster Stage*
 
 ![Screenshot 2](https://media.discordapp.net/attachments/929962336616321027/1155502795441578084/Screenshot_2022-09-20-19-38-21-50_eff019977d1443601861c535007260ac.jpg?width=402&height=871)
 *Screenshot 2: Emergency Stage*
 
-![Screenshot 3](insert-screenshot-3-image-url-here)
-*Screenshot 3: Post-Disaster Stage*
+![Screenshot 3](https://media.discordapp.net/attachments/929962336616321027/1155502795160551444/Screenshot_2022-09-20-19-37-39-84_eff019977d1443601861c535007260ac.jpg?width=402&height=871)
+*Screenshot 3: SOS verification*
 
 ## Technophiles API
 
